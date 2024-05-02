@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ActivateSound: MonoBehaviour
+{
+    public GameObject objetoAudio; // GameObject que contiene el AudioSource
+    private AudioSource audioSource; // Referencia al AudioSource
+
+    // Se llama cuando un GameObject entra en el trigger
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verificar si el GameObject que entra es el jugador
+        if (other.CompareTag("Player"))
+        {
+            // Obtener el AudioSource del GameObject asignado
+            audioSource = objetoAudio.GetComponent<AudioSource>();
+
+            // Verificar si el AudioSource existe y no está reproduciéndose
+            if (audioSource != null && !audioSource.isPlaying)
+            {
+                // Activar el AudioSource si está desactivado
+                if (!audioSource.enabled)
+                {
+                    audioSource.enabled = true;
+                }
+
+                // Reproducir el AudioSource
+                audioSource.Play();
+            }
+        }
+    }
+
+    // Se llama cuando un GameObject sale del trigger
+    private void OnTriggerExit(Collider other)
+    {
+        // Verificar si el GameObject que sale es el jugador
+        if (other.CompareTag("Player"))
+        {
+            // Desactivar el AudioSource si está reproduciéndose
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                audioSource.enabled = false;
+            }
+        }
+    }
+}

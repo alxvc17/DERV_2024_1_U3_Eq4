@@ -1,0 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnCube : MonoBehaviour
+{
+    [SerializeField]
+    GameObject objeto;
+
+    [SerializeField]
+    GameObject ubicacion;
+
+    private GameObject spawnedObject;
+    private bool objectSpawned = false;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (objectSpawned)
+            {
+                Destroy(spawnedObject);
+                objectSpawned = false;
+            }
+            else
+            {
+                SpawnObject();
+            }
+        }
+    }
+
+    void SpawnObject()
+    {
+        spawnedObject = Instantiate(objeto,
+                            ubicacion.transform.position,
+                            ubicacion.transform.rotation);
+        objectSpawned = true;
+    }
+}

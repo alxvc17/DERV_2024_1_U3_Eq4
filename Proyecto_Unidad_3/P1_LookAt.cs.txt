@@ -1,0 +1,39 @@
+using UnityEngine;
+
+public class P1_LookAt : MonoBehaviour
+{
+    [SerializeField] GameObject personaje;
+
+    private bool insideTrigger = false;
+
+    void Start()
+    {
+        personaje = GameObject.Find("Personaje");
+    }
+
+    void Update()
+    {
+        if (insideTrigger)
+        {
+            Vector3 pos = personaje.transform.position;
+            pos.y = transform.position.y;
+            transform.LookAt(pos);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("TriggerTag")) // Reemplaza "TriggerTag" por la etiqueta que tenga tu trigger
+        {
+            insideTrigger = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("TriggerTag")) // Reemplaza "TriggerTag" por la etiqueta que tenga tu trigger
+        {
+            insideTrigger = false;
+        }
+    }
+}

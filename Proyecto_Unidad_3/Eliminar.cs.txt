@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Eliminar : MonoBehaviour
+{
+    public GameObject Desactivar;
+    public GameObject Activar;
+    [SerializeField] CreatCubeAlt CCA1;
+    [SerializeField] CreatCubeAlt CCA2;
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        string name = other.gameObject.name;
+        string tag = other.gameObject.name;
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+            Desactivar.GetComponent<Collider>().enabled = false;
+            Desactivar.GetComponent<MeshRenderer>().enabled = false;
+
+            CCA1.ObjectDestroyed();
+        }
+        if (other.gameObject.CompareTag("Enemy2"))
+        {
+            Destroy(other.gameObject);
+            Activar.GetComponent<MeshRenderer>().enabled = true;
+
+            CCA2.ObjectDestroyed();
+        }
+
+    }
+}

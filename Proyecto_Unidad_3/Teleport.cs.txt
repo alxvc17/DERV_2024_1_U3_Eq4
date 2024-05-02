@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Teleport : MonoBehaviour
+{
+    [SerializeField] Transform puntoDeSpawn; // Punto de spawn al que quieres teletransportarte
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) // Verifica si el objeto que entra en el trigger es el jugador
+        {
+            Teleportar(other.gameObject); // Llama a la función para teletransportar y pasa el objeto que ha entrado al trigger
+        }
+    }
+
+    private void Teleportar(GameObject objeto)
+    {
+        objeto.transform.position = puntoDeSpawn.position; // Establece la posición del objeto al punto de spawn
+        // Puedes agregar más lógica aquí, como efectos visuales o de sonido
+    }
+}

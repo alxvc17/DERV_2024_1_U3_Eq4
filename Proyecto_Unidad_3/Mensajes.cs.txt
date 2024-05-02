@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+
+public class Mensajes : MonoBehaviour
+{
+    // Referencia al componente TextMesh
+    [SerializeField] TextMeshProUGUI texto;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verifica si el objeto que entró en la zona es el jugador
+        if (other.CompareTag("Player"))
+        {
+            // Activa el TextMesh
+            texto.gameObject.SetActive(true);
+        }
+    }
+
+    // Método llamado cuando otro collider sale del collider de este objeto
+    private void OnTriggerExit(Collider other)
+    {
+        // Verifica si el objeto que salió de la zona es el jugador
+        if (other.CompareTag("Player"))
+        {
+            // Desactiva el TextMesh
+            texto.gameObject.SetActive(false);
+        }
+    }
+}

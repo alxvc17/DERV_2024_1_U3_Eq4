@@ -1,0 +1,16 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class CambScene : MonoBehaviour
+{
+    // Nombre de la escena a cargar
+    public string nombreDeEscena;
+    private void OnTriggerEnter(Collider other)
+    {
+        // Verifica si el objeto que entró en la zona es el jugador
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(nombreDeEscena);
+        }
+    }
+}

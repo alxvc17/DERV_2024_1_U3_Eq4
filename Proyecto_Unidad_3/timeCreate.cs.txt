@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class timeCreate : MonoBehaviour
+{
+    [SerializeField] CreatCubeAlt gen ;
+    float tiempo;
+
+    void Start()
+    {
+        tiempo = 0;
+    }
+
+    void Update()
+    {
+        if (gen.enabled)
+        {
+            tiempo += Time.deltaTime;
+        }
+
+        // Generar el objeto después de un cierto tiempo
+        if (tiempo >= 5f)
+        {
+            gen.CreateEnemy();
+            tiempo = 0;
+        }
+    }
+}
